@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lilug.lab;
+package org.lilug.android_sensors;
 
 import android.app.Activity;
 import android.content.Context;
