@@ -27,13 +27,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 public class CompassActivity extends Activity {
 
 	private class SampleView extends View {
-		private boolean mAnimate;
 		private final Paint mPaint = new Paint();
 		private final Path mPath = new Path();
 
@@ -46,24 +44,6 @@ public class CompassActivity extends Activity {
 			mPath.lineTo(0, 50);
 			mPath.lineTo(20, 60);
 			mPath.close();
-		}
-
-		@Override
-		protected void onAttachedToWindow() {
-			mAnimate = true;
-			if (false) {
-				Log.d(TAG, "onAttachedToWindow. mAnimate=" + mAnimate);
-			}
-			super.onAttachedToWindow();
-		}
-
-		@Override
-		protected void onDetachedFromWindow() {
-			mAnimate = false;
-			if (false) {
-				Log.d(TAG, "onDetachedFromWindow. mAnimate=" + mAnimate);
-			}
-			super.onDetachedFromWindow();
 		}
 
 		@Override
@@ -98,10 +78,6 @@ public class CompassActivity extends Activity {
 
 		@Override
 		public void onSensorChanged(final SensorEvent event) {
-			if (false) {
-				Log.d(TAG, "sensorChanged (" + event.values[0] + ", "
-						+ event.values[1] + ", " + event.values[2] + ")");
-			}
 			mValues = event.values;
 			if (mView != null) {
 				mView.invalidate();
@@ -125,9 +101,6 @@ public class CompassActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		if (false) {
-			Log.d(TAG, "onResume");
-		}
 		super.onResume();
 
 		mSensorManager.registerListener(mListener, mSensor,
@@ -136,15 +109,7 @@ public class CompassActivity extends Activity {
 
 	@Override
 	protected void onStop() {
-		if (false) {
-			Log.d(TAG, "onStop");
-		}
 		mSensorManager.unregisterListener(mListener);
 		super.onStop();
-	}
-
-	@Override
-	public void setContentView(final View view) {
-		super.setContentView(view);
 	}
 }
